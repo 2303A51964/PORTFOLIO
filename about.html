@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Uppula Vignesh — About</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--accent:#6ee7b7;--accent2:#818cf8;--text:#e2e8f0;--muted:#64748b;--card:#13131f}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:15px;line-height:1.7;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5%;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);text-decoration:none;letter-spacing:-.02em}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+  .page{min-height:100vh;padding-top:72px}
+  .section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:flex;align-items:center;gap:12px}
+  .section-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
+  h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+  h2 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400}
+  .btn{padding:.75rem 1.8rem;border-radius:4px;font-family:'DM Mono',monospace;font-size:.8rem;letter-spacing:.05em;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+  footer{border-top:1px solid var(--border);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);flex-wrap:wrap;gap:.5rem}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;color:var(--accent);font-size:.9rem}
+  ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+  /* ABOUT HERO */
+  .about-hero{padding:6rem 5% 3rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+  .about-hero .glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(110,231,183,.06) 0%,transparent 70%);top:-100px;right:0;pointer-events:none}
+  .about-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:1rem;opacity:0;animation:fadeUp .6s ease .2s forwards}
+  .about-hero h1 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400}
+  .about-hero .intro{color:var(--muted);max-width:500px;font-size:.9rem;opacity:0;animation:fadeUp .6s ease .35s forwards}
+
+  /* ABOUT CONTENT */
+  .about-content{padding:4rem 5%;display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
+  .about-bio h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:1.2rem}
+  .about-bio p{color:var(--muted);margin-bottom:1.2rem;font-size:.88rem;line-height:1.9}
+  .about-bio p strong{color:var(--accent)}
+  .about-bio .tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+  .about-bio .tag{padding:.3rem .8rem;border:1px solid var(--border);border-radius:100px;font-size:.72rem;color:var(--muted)}
+  .about-sidebar{display:flex;flex-direction:column;gap:1.5rem}
+  .info-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .info-card-header{padding:1rem 1.5rem;border-bottom:1px solid var(--border);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .info-row{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem}
+  .info-row:last-child{border-bottom:none}
+  .info-row .label{color:var(--muted)}
+  .info-row .value{color:var(--text);text-align:right}
+  .info-row .value.accent{color:var(--accent)}
+
+  /* CERTS */
+  .certs-section{padding:0 5% 4rem}
+  .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2rem}
+  .cert-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color .2s,transform .2s}
+  .cert-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .cert-icon{font-size:1.4rem;flex-shrink:0}
+  .cert-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:.25rem}
+  .cert-issuer{font-size:.72rem;color:var(--accent)}
+
+  /* EXPERIENCE */
+  .exp-section{padding:4rem 5% 5rem;border-top:1px solid var(--border)}
+  .exp-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;max-width:700px;margin-top:2rem;position:relative;overflow:hidden}
+  .exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .exp-date{font-size:.7rem;color:var(--accent);letter-spacing:.1em;margin-bottom:.5rem}
+  .exp-role{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.25rem}
+  .exp-company{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem}
+  .exp-points{list-style:none}
+  .exp-points li{font-size:.83rem;color:var(--muted);padding:.4rem 0 .4rem 1.2rem;position:relative;border-bottom:1px solid rgba(255,255,255,.04)}
+  .exp-points li:last-child{border-bottom:none}
+  .exp-points li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:768px){.about-content{grid-template-columns:1fr;gap:2.5rem}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:1.5rem 5%;gap:1.2rem}.nav-links.open{display:flex}.nav-toggle{display:flex}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">UV.</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="contact.html">Connect</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="about-hero">
+    <div class="glow"></div>
+    <p class="section-label">About Me</p>
+    <h1>The person<br/>behind the <em>code</em></h1>
+    <p class="intro">A passionate developer, curious learner, and problem-solver from SR University.</p>
+  </div>
+
+  <div class="about-content">
+    <div class="about-bio reveal">
+     <h3>Hey, I'm Vignesh 👋</h3>
+
+<p>
+I'm a <strong>3rd Year B.Tech Computer Science student</strong> at SR University (GPA: 8.1), specializing in <strong>Java</strong> and <strong>Data Structures & Algorithms</strong>.
+</p>
+
+<p>
+I have hands-on experience in <strong>full-stack web development</strong> using HTML, CSS, and JavaScript, building responsive and user-friendly applications.
+</p>
+
+<p>
+Aspiring <strong>Software Developer</strong> with a passion for problem-solving and developing efficient, real-world solutions.
+</p>
+
+<p>
+Currently seeking opportunities to apply my skills and gain industry experience.
+</p>
+      <div class="tags">
+        <span class="tag">Full-Stack Dev</span>
+        <span class="tag">Java Developer</span>
+        <span class="tag">Software Engineer</span>
+        <span class="tag">Problem Solver</span>
+        <span class="tag">CSE 2027</span>
+      </div>
+      <br/>
+      <a class="btn btn-ghost" href="contact.html">↗ Say Hello</a>
+    </div>
+
+    <div class="about-sidebar reveal">
+      <div class="info-card">
+        <div class="info-card-header">Quick Info</div>
+        <div class="info-row"><span class="label">Name</span><span class="value">Uppula Vignesh</span></div>
+        <div class="info-row"><span class="label">Degree</span><span class="value">B.Tech CSE</span></div>
+        <div class="info-row"><span class="label">University</span><span class="value">SR University</span></div>
+        <div class="info-row"><span class="label">Year</span><span class="value">3rd Year (2026)</span></div>
+        <div class="info-row"><span class="label">GPA</span><span class="value accent">8.1 / 10</span></div>
+        <div class="info-row"><span class="label">Location</span><span class="value">India</span></div>
+        <div class="info-row"><span class="label">Email</span><span class="value" style="font-size:.7rem">uppulavignesh@gmail.com</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-header">Interests</div>
+        <div class="info-row"><span class="label">🤖</span><span class="value">Software Engineer</span></div>
+        <div class="info-row"><span class="label">🌐</span><span class="value">Full-Stack Development</span></div>
+        <div class="info-row"><span class="label">☕</span><span class="value">Java &amp; Backend Systems</span></div>
+       
+        <div class="info-row"><span class="label">🧩</span><span class="value">DSA &amp; Problem Solving</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="certs-section">
+    <p class="section-label">Achievements</p>
+    <h2>Certifications &amp; <em>Awards</em></h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal"><div class="cert-icon">🐍</div><div><div class="cert-name">Python Course Completion</div><div class="cert-issuer">Saylor Academy</div></div></div>
+      <div class="cert-card reveal"><div class="cert-icon">☕</div><div><div class="cert-name">Java Certificate</div><div class="cert-issuer">HackerRank</div></div></div>
+      <div class="cert-card reveal"><div class="cert-icon">💼</div><div><div class="cert-name">Java Internship</div><div class="cert-issuer">Yhills Platform</div></div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🏆</div><div><div class="cert-name">TCS iON Career Edge</div><div class="cert-issuer">Young Professional Certificate</div></div></div>
+      <div class="cert-card reveal"><div class="cert-icon">☁️</div><div><div class="cert-name">AWS Academy Graduate – Cloud Foundations</div><div class="cert-issuer">Amazon Web Services</div></div></div>
+
+    </div>
+  </div>
+
+  <div class="exp-section">
+    <p class="section-label">Work Experience</p>
+    <h2>Where I've <em>worked</em></h2>
+    <div class="exp-card reveal">
+      <div class="exp-date">Feb 2025 — Apr 2025</div>
+      <div class="exp-role">Java Intern</div>
+      <div class="exp-company">Yhills Platform</div>
+      <ul class="exp-points">
+        <li>Applied OOP principles, data structures &amp; algorithms in real-world Java projects</li>
+        <li>Developed and tested applications, improving coding efficiency and debugging skills</li>
+        <li>Collaborated with a team, strengthening project management and communication</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">UV.</span>
+  <span>Uppula Vignesh · SR University · CSE 2026</span>
+  <a href="contact.html" style="color:var(--accent);text-decoration:none">Get in Touch →</a>
+</footer>
+
+<script>
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+  reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

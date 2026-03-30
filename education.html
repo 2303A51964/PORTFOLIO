@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Uppula Vignesh — Education</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--accent:#6ee7b7;--accent2:#818cf8;--text:#e2e8f0;--muted:#64748b;--card:#13131f}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:15px;line-height:1.7;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5%;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);text-decoration:none;letter-spacing:-.02em}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+  .page{min-height:100vh;padding-top:72px}
+  .section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:flex;align-items:center;gap:12px}
+  .section-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
+  h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+  h2 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+  footer{border-top:1px solid var(--border);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);flex-wrap:wrap;gap:.5rem}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;color:var(--accent);font-size:.9rem}
+  ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+  /* HERO */
+  .edu-hero{padding:6rem 5% 3rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+  .edu-hero .glow{position:absolute;width:500px;height:400px;background:radial-gradient(circle,rgba(129,140,248,.07) 0%,transparent 70%);top:-50px;right:0;pointer-events:none}
+  .edu-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:1rem;opacity:0;animation:fadeUp .6s ease .2s forwards}
+  .edu-hero h1 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400}
+  .edu-hero p{color:var(--muted);max-width:500px;font-size:.9rem;opacity:0;animation:fadeUp .6s ease .35s forwards}
+
+  /* TIMELINE */
+  .edu-body{padding:5rem 5%}
+  .timeline{position:relative;max-width:800px;margin:0 auto}
+  .timeline::before{content:'';position:absolute;left:120px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border),transparent)}
+  .timeline-item{display:grid;grid-template-columns:120px 1fr;gap:2.5rem;margin-bottom:3rem;position:relative}
+  .timeline-item::before{content:'';position:absolute;left:116px;top:1.6rem;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(110,231,183,.15);z-index:1}
+  .timeline-year{text-align:right;padding-top:1.5rem;font-size:.68rem;color:var(--accent);letter-spacing:.1em;line-height:1.6}
+  .timeline-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem 2rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+  .timeline-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+  .timeline-card:hover{border-color:rgba(110,231,183,.3);transform:translateX(6px)}
+  .timeline-badge{display:inline-block;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+  .timeline-degree{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:.3rem}
+  .timeline-school{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+  .timeline-grade{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .85rem;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);border-radius:4px;font-size:.75rem;color:var(--accent);font-weight:600;margin-bottom:.75rem}
+  .timeline-details{font-size:.78rem;color:var(--muted);line-height:1.8;padding-top:.75rem;border-top:1px solid var(--border);margin-top:.75rem}
+
+  /* SCORE CARDS */
+  .score-section{padding:0 5% 5rem}
+  .score-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-top:2rem}
+  .score-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 1.5rem;text-align:center;transition:border-color .2s,transform .2s}
+  .score-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .score-num{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.5rem}
+  .score-label{font-size:.75rem;color:var(--text);font-weight:600;margin-bottom:.3rem}
+  .score-sub{font-size:.68rem;color:var(--muted)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:768px){.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:1.5rem 5%;gap:1.2rem}.nav-links.open{display:flex}.nav-toggle{display:flex}}
+  @media(max-width:600px){.timeline::before{left:0}.timeline-item{grid-template-columns:1fr;gap:.75rem}.timeline-item::before{display:none}.timeline-year{text-align:left;padding-top:0}.timeline-card:hover{transform:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">UV.</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="education.html" class="active">Education</a></li>
+    <li><a href="contact.html">Connect</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="edu-hero">
+    <div class="glow"></div>
+    <p class="section-label">Education</p>
+    <h1>Academic <em>journey</em></h1>
+    <p>A consistent record of high achievement across all academic milestones.</p>
+  </div>
+
+  <div class="edu-body">
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2022<br/>— Present</div>
+        <div class="timeline-card">
+          <div class="timeline-badge">🎓 Current</div>
+          <div class="timeline-degree">B.Tech — Computer Science &amp; Engineering</div>
+          <div class="timeline-school">SR University</div>
+          <div class="timeline-grade">⭐ GPA: 8.1 / 10</div>
+          <div class="timeline-details">Specializing in software development and core CS fundamentals. Active in coding challenges and self-learning through certifications. Completed a Java internship during this period.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2021<br/>— 2023</div>
+        <div class="timeline-card">
+          <div class="timeline-badge">📘 Intermediate</div>
+          <div class="timeline-degree">Intermediate — MPC (Maths, Physics, Chemistry)</div>
+          <div class="timeline-school">SR Junior College</div>
+          <div class="timeline-grade">⭐ 97.4%</div>
+          <div class="timeline-details">Excelled in science and mathematics, building a strong analytical foundation that fuels problem-solving and logical thinking in software development.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2020<br/>— 2021</div>
+        <div class="timeline-card">
+          <div class="timeline-badge">🏫 Secondary</div>
+          <div class="timeline-degree">Class 10 — SSC</div>
+          <div class="timeline-school">Vikas High School</div>
+          <div class="timeline-grade">⭐ 100%</div>
+          <div class="timeline-details">Achieved a perfect score in the SSC board examination — a testament to dedication, consistency, and a passion for learning from the very beginning.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="score-section">
+    <p class="section-label">Score Highlights</p>
+    <h2>Numbers that <em>matter</em></h2>
+    <div class="score-cards">
+      <div class="score-card reveal"><div class="score-num">8.1</div><div class="score-label">B.Tech GPA</div><div class="score-sub">Out of 10 · SR University</div></div>
+      <div class="score-card reveal"><div class="score-num">97%</div><div class="score-label">Intermediate</div><div class="score-sub">SR Junior College</div></div>
+      <div class="score-card reveal"><div class="score-num">100%</div><div class="score-label">Class 10</div><div class="score-sub">Vikas High School · SSC</div></div>
+      <div class="score-card reveal"><div class="score-num">5+</div><div class="score-label">Certifications</div><div class="score-sub">HackerRank · Cisco · TCS · More</div></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">UV.</span>
+  <span>Uppula Vignesh · SR University · CSE 2026</span>
+  <a href="contact.html" style="color:var(--accent);text-decoration:none">Contact →</a>
+</footer>
+
+<script>
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+  reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

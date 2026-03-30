@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Uppula Vignesh — Skills</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--accent:#6ee7b7;--accent2:#818cf8;--text:#e2e8f0;--muted:#64748b;--card:#13131f}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:15px;line-height:1.7;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5%;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);text-decoration:none;letter-spacing:-.02em}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+  .page{min-height:100vh;padding-top:72px}
+  .section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:flex;align-items:center;gap:12px}
+  .section-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
+  h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+  h2 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+  footer{border-top:1px solid var(--border);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);flex-wrap:wrap;gap:.5rem}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;color:var(--accent);font-size:.9rem}
+  ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+  /* SKILLS HERO */
+  .skills-hero{padding:6rem 5% 3rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+  .skills-hero .glow{position:absolute;width:500px;height:400px;background:radial-gradient(circle,rgba(129,140,248,.07) 0%,transparent 70%);top:-50px;right:-50px;pointer-events:none}
+  .skills-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:1rem;opacity:0;animation:fadeUp .6s ease .2s forwards}
+  .skills-hero h1 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400}
+  .skills-hero p{color:var(--muted);max-width:500px;font-size:.9rem;opacity:0;animation:fadeUp .6s ease .35s forwards}
+
+  /* SKILLS BODY */
+  .skills-body{padding:4rem 5%;display:flex;flex-direction:column;gap:3.5rem}
+  .skill-group-title{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:12px}
+  .skill-group-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+  /* LANGUAGE BARS */
+  .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+  .lang-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color .2s,transform .2s}
+  .lang-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .lang-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+  .lang-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
+  .lang-pct{font-size:.75rem;color:var(--accent);font-weight:600}
+  .lang-bar{height:4px;background:var(--border);border-radius:10px;overflow:hidden}
+  .lang-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform-origin:left;transform:scaleX(0);transition:transform 1s ease .3s}
+  .lang-card.visible .lang-fill{transform:scaleX(1)}
+  .lang-desc{font-size:.72rem;color:var(--muted);margin-top:.6rem}
+
+  /* SKILL CARDS */
+  .skill-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+  .skill-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:.85rem;transition:all .2s}
+  .skill-item:hover{border-color:var(--accent);transform:translateY(-3px);background:rgba(110,231,183,.04)}
+  .skill-icon{font-size:1.3rem;flex-shrink:0}
+  .skill-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700}
+  .skill-level{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+  .prof-bar{width:100%;height:3px;background:var(--border);border-radius:10px;margin-top:6px;overflow:hidden}
+  .prof-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform-origin:left;transform:scaleX(0);transition:transform .8s ease .2s}
+  .skill-item.visible .prof-fill{transform:scaleX(1)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:768px){.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:1.5rem 5%;gap:1.2rem}.nav-links.open{display:flex}.nav-toggle{display:flex}}
+  @media(max-width:600px){.skill-cards{grid-template-columns:1fr 1fr}.lang-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">UV.</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html" class="active">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="contact.html">Connect</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="skills-hero">
+    <div class="glow"></div>
+    <p class="section-label">Technical Skills</p>
+    <h1>Tools I <em>master</em></h1>
+    <p>Languages, frameworks, and tools I use to build software.</p>
+  </div>
+
+  <div class="skills-body">
+
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Programming Languages</div>
+      <div class="lang-grid">
+        <div class="lang-card reveal"><div class="lang-top"><span class="lang-name">Java</span><span class="lang-pct">85%</span></div><div class="lang-bar"><div class="lang-fill"></div></div><div class="lang-desc">OOP, DSA, internship experience. Primary language.</div></div>
+        <div class="lang-card reveal"><div class="lang-top"><span class="lang-name">Python</span><span class="lang-pct">75%</span></div><div class="lang-bar"><div class="lang-fill" style="--w:.75"></div></div><div class="lang-desc">Scripting, automation, exploring AI/ML libraries.</div></div>
+        <div class="lang-card reveal"><div class="lang-top"><span class="lang-name">C</span><span class="lang-pct">70%</span></div><div class="lang-bar"><div class="lang-fill" style="--w:.70"></div></div><div class="lang-desc">Fundamentals, memory management, OS concepts.</div></div>
+        <div class="lang-card reveal"><div class="lang-top"><span class="lang-name">SQL</span><span class="lang-pct">65%</span></div><div class="lang-bar"><div class="lang-fill" style="--w:.65"></div></div><div class="lang-desc">Querying, relational databases, data manipulation.</div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Web Technologies</div>
+      <div class="skill-cards">
+        <div class="skill-item reveal"><div class="skill-icon">🌐</div><div><div class="skill-name">HTML</div><div class="skill-level">Proficient</div><div class="prof-bar"><div class="prof-fill" style="width:90%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">🎨</div><div><div class="skill-name">CSS</div><div class="skill-level">Proficient</div><div class="prof-bar"><div class="prof-fill" style="width:85%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">⚡</div><div><div class="skill-name">JavaScript</div><div class="skill-level">Intermediate</div><div class="prof-bar"><div class="prof-fill" style="width:70%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">📱</div><div><div class="skill-name">Responsive Design</div><div class="skill-level">Proficient</div><div class="prof-bar"><div class="prof-fill" style="width:80%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">CS Fundamentals</div>
+      <div class="skill-cards">
+        <div class="skill-item reveal"><div class="skill-icon">🌳</div><div><div class="skill-name">Data Structures</div><div class="skill-level">Strong</div><div class="prof-bar"><div class="prof-fill" style="width:80%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">🔢</div><div><div class="skill-name">Algorithms</div><div class="skill-level">Intermediate</div><div class="prof-bar"><div class="prof-fill" style="width:75%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">💻</div><div><div class="skill-name">Operating Systems</div><div class="skill-level">Intermediate</div><div class="prof-bar"><div class="prof-fill" style="width:65%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">🧩</div><div><div class="skill-name">OOP Principles</div><div class="skill-level">Strong</div><div class="prof-bar"><div class="prof-fill" style="width:85%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Tools &amp; Platforms</div>
+      <div class="skill-cards">
+        <div class="skill-item reveal"><div class="skill-icon">🐙</div><div><div class="skill-name">Git &amp; GitHub</div><div class="skill-level">Comfortable</div><div class="prof-bar"><div class="prof-fill" style="width:75%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">🖥️</div><div><div class="skill-name">VS Code</div><div class="skill-level">Daily Driver</div><div class="prof-bar"><div class="prof-fill" style="width:90%"></div></div></div></div>
+        <div class="skill-item reveal"><div class="skill-icon">🤖</div><div><div class="skill-name">AI / ML (Learning)</div><div class="skill-level">Beginner</div><div class="prof-bar"><div class="prof-fill" style="width:35%"></div></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">UV.</span>
+  <span>Uppula Vignesh · SR University · CSE 2026</span>
+  <a href="projects.html" style="color:var(--accent);text-decoration:none">See Projects →</a>
+</footer>
+
+<script>
+  const allReveal=document.querySelectorAll('.reveal,.skill-item,.lang-card');
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+  allReveal.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
